@@ -13,7 +13,7 @@ def first_page(request):
     
     return redirect('/accounts/login/')
 
-@login_required(login_url='/accounts/login/')
+# @login_required(login_url='/accounts/login/')
 def home(request):
     images = Image.objects.all()
     message ="Welcome to my Instagram clone"
