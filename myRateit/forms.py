@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile,Image, Comment
+from .models import Profile,Project, Comment
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -10,9 +10,9 @@ class ProfileForm(forms.ModelForm):
         exclude=['username']
         fields ='__all__'
 
-class ImageForm(forms.ModelForm):
+class ProjectForm(forms.ModelForm):
     class Meta:
-        model = Image
+        model = Project
         exclude=['comments']
         fields ='__all__'
 

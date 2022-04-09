@@ -1,10 +1,10 @@
 from email import message
 from django.shortcuts import redirect, render
-from .models import Image, Profile,Likes
+from .models import Project, Profile,Likes
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, ImageForm, CommentForm, SignUpForm
+from .forms import ProfileForm, ProjectForm, CommentForm, SignUpForm
 
 # Create your views here.
 
@@ -15,11 +15,11 @@ def first_page(request):
 
 # @login_required(login_url='/accounts/login/')
 def home(request):
-    images = Image.objects.all()
-    message ="Welcome to my Instagram clone"
-    print(images)
+    projects = Project.objects.all()
+    message ="Welcome to my RateIt"
+    
 
-    return render(request,'index.html',{'images':images, 'message': message})
+    return render(request,'index.html',{'projects':projects, 'message': message})
 def profile_update(request):
     current_user = request.user
     if request.method == 'POST':
@@ -66,7 +66,7 @@ def profile_display(request):
 def add_post(request):
     current_user = request.user
     if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
+        form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             new_post=form.save(commit=False)
             # new_post.profile=current_user
@@ -76,7 +76,7 @@ def add_post(request):
            
                         
     else:
-        form = ImageForm()
+        form = ProjectForm()
         
     return render(request, 'add_post.html',{'form':form})
 
@@ -109,28 +109,28 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-def image_like(request, id):
+def project_like(request, id):
     likes = Likes.objects.filter(id=id).first()
     # check if the user has already liked the image
     if Likes.objects.filter(id=id).exists():
         # unlike the image
         likes.delete()
         # reduce the number of likes by 1 for the image
-        image = Image.objects.get(id=id)
+        project = Project.objects.get(id=id)
         # check if the image like_count is equal to 0
-        if image.like_count == 0:
-            image.like_count = 0
-            image.save()
+        if project.like_count == 0:
+            project.like_count = 0
+            project.save()
         else:
-            like =image.like_count
+            like =project.like_count
             like= like -1 
-            image.save()
+            project.save()
         return redirect('/')
     else:
         likes = Likes(id=id)
         likes.save()
         # increase the number of likes by 1 for the image
-        image = Image.objects.get(id=id)
+        image = Project.objects.get(id=id)
         likes=image.like_count 
         likes = likes +1
         likes.save()

@@ -29,8 +29,8 @@ class Project(models.Model):
     landing_page = CloudinaryField('images', null=True)
     title = models.CharField(max_length =60)
     description= models.CharField(max_length=100)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User,related_name='image_post') 
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    votes = models.ManyToManyField(User,related_name='projects') 
     link= models.CharField(max_length=100)
     
 
