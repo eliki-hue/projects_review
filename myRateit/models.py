@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User 
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Profile(models.Model):
@@ -8,7 +9,7 @@ class Profile(models.Model):
     useremail = models.EmailField(max_length=30)
     userage = models.CharField(max_length=2)
     bio = models.CharField(max_length=100)
-    profile_image = 
+    profile_image = CloudinaryField('images', null=True)
     user_password = models.CharField(max_length=15)
     def __str__(self):
         return self.username
@@ -25,7 +26,7 @@ class Profile(models.Model):
 
 
 class Project(models.Model):
-    landing_page = models.ImageField(upload_to = 'images/', null=True)
+    landing_page = CloudinaryField('images', null=True)
     title = models.CharField(max_length =60)
     description= models.CharField(max_length=100)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
