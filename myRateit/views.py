@@ -1,4 +1,5 @@
 from email import message
+from multiprocessing import AuthenticationError
 from django.shortcuts import redirect, render
 from .models import Project, Profile,Likes
 from django.contrib.auth import login, authenticate
@@ -34,8 +35,8 @@ def profile_update(request):
                
                 userage=form.cleaned_data['userage']
                 profile_image=form.cleaned_data['profile_image']
-                user_password=form.cleaned_data['user_password']
-                Profile.objects.filter(username=current_user).update(useremail=useremail, userage=userage,profile_image=profile_image,user_password=user_password)
+                AuthenticationError=form.cleaned_data['AuthenticationError']
+                Profile.objects.filter(username=current_user).update(useremail=useremail, userage=userage,profile_image=profile_image,AuthenticationError=AuthenticationError)
             else:
                 print('profile does not exist')
                 profile=form.save(commit=False)
@@ -62,15 +63,28 @@ def profile_display(request):
 
     return render(request, 'profile.html',{'profile':profile})
 
-
+@login_required(login_url='/accounts/login/')
 def add_post(request):
+   
     current_user = request.user
+    print(current_user)
+    print('passed')
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
-            new_post=form.save(commit=False)
-            # new_post.profile=current_user
-            new_post.save()
+            
+            landing_page=form.cleaned_data['landing_page']
+            
+            title=form.cleaned_data['title']
+            description=form.cleaned_data['description']
+            author = current_user
+            link= form.cleaned_data['link']
+
+            project=Project(landing_page=landing_page, title=title,description=description,author=author, link=link)
+            print(project.author)
+            # new_post=form.save(commit=False)
+            # new_post.author=current_user
+            project.save()
             print('post saved')
             return redirect(home)
            

@@ -30,8 +30,8 @@ class Project(models.Model):
     title = models.CharField(max_length =60)
     description= models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    votes = models.ManyToManyField(User,related_name='projects') 
-    link= models.CharField(max_length=100)
+    votes = models.ManyToManyField(User,related_name='projects',default=0) 
+    link= models.CharField(max_length=100, default='/')
     
 
     def __str__(self):
