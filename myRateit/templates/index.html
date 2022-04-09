@@ -22,17 +22,17 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6" style="align-items: center;text-align: center;justify-items: center;align-content: center;margin: 10px;">
       {% block content %}
-      {% for image in images %}
+      {% for project in projects %}
       <div class="up" style="align-items: center;text-align: center;justify-items: center;align-content: center;width: 80% vw;margin: 10px;">
         <!-- <h2>{{ pic.image_name }}</h2> -->
-        <img src="{{image.image.url}}" height="auto%" width="100%" alt="mascot">
-        <h3><strong>Name: </strong> {{image.image_name}}</h3> 
-    <h3> <strong> caption:</strong> {{image.caption}}</h3>
+        <img src="{{project.landing_page.url}}" height="auto%" width="100%" alt="mascot">
+        <h3><strong>Name: </strong> {{project.tittle}}</h3> 
+    <h3> <strong> caption:</strong> {{project.description}}</h3>
      
-    <h3><strong>comment: </strong>{{image.comments.comments}}</h3>
+    <h3><strong>comment: </strong>{{project.comments.comments}}</h3>
     <div>
-      {% if image.comments.all%}
-      {% for comment in image.comments.all %}
+      {% if project.comments.all%}
+      {% for comment in project.comments.all %}
       <p>{{comment.comments}} <strong>author:</strong> {{ comment.author }}    <strong> Date </strong>{{ comment.date_added }}</p>
       <p></p> 
       {% endfor %}
@@ -47,17 +47,7 @@
       {% csrf_token %}
       <button value="{{image.id}}" class="btn btn-sm btn-success" >likes {{image.like_count}} <i class="fa fa-thumbs-up" id="like"></i></button> 
    <div>
-    {% if image.videofile %}
-    </form>
-    <video width='400' controls>
-      <source src='{{ MEDIA_URL }}{{ image.videofile }}' type='video/mp4'>
-      Your browser does not support the video tag.
-      </video>
-    {%endif%}
-
-   </div>
-      
-      </div>
+   
       {%endfor%}
       {%endblock%}
 
