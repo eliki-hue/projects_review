@@ -3,6 +3,7 @@ from multiprocessing import AuthenticationError
 from django.shortcuts import redirect, render
 from .models import Project, Profile,Likes
 from django.contrib.auth import login, authenticate
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, ProjectForm, CommentForm, SignUpForm
@@ -157,3 +158,12 @@ def project_details(request, pk):
 
     return render(request,'project_details.html', {'projects':project})
 
+def rate_project(request):
+    if request.method =='POST':
+        project_id =request.POST.get('project_id')
+        val =request.POST.get('val_num')
+        obj =Project.objects.get(id= project_id)
+        obj.score =val
+        obj.save()
+        return JsonResponse({'success':'true', 'score':val}, safe =False)
+    return JsonResponse({'success':'false'})

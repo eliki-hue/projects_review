@@ -11,7 +11,8 @@ urlpatterns=[
     path('add_comment', views.add_comment, name='add_comment'),
     path('signup', views.signup, name='signup'),
     # path("like/<int:id>",views.project_like,name='project_like'),
-    path("details/<int:pk>",views.project_details,name='project_details')
+    path("details/<int:pk>",views.project_details,name='project_details'),
+    path('rate/', views.rate_project, name='rate_project' ),
 
     
 ]

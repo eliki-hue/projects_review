@@ -23,11 +23,19 @@
         <div class="modal-body">
             <p>tittle {{project.title}}</p>
             <p>description {{project.description}}</p>
-            <button type="submit"><span class="fa fa-star my-btn checked" id="first"></span></button>
-            <button type="submit"><span class="fa fa-star my-btn checked" id="two"></span></button>
-            <button type="submit"><span class="fa fa-star my-btn checked" id="three"></span></button>
-            <button type="submit"><span class="fa fa-star my-btn"  id="four"></span></button>
-            <button type="submit"><span class="fa fa-star my-btn" id="five"></span></button>
+            <form action="" class="rate-form" method="POST" id="{{project.id}}">
+                {% csrf_token %}
+                <button type="submit"><span class="fa fa-star my-btn checked" id="first">1</span></button>
+                <button type="submit"><span class="fa fa-star my-btn checked" id="two">2</span></button>
+                <button type="submit"><span class="fa fa-star my-btn checked" id="three">3</span></button>
+                <button type="submit"><span class="fa fa-star my-btn"  id="four">4</span></button>
+                <button type="submit"><span class="fa fa-star my-btn" id="five">5</span></button>
+                <button type="submit"><span class="fa fa-star my-btn" id="six">6</span></button>
+                <button type="submit"><span class="fa fa-star my-btn" id="seven">7</span></button>
+                <button type="submit"><span class="fa fa-star my-btn" id="eight">8</span></button>
+                <button type="submit"><span class="fa fa-star my-btn"  id="nine">9</span></button>
+                <button type="submit"><span class="fa fa-star my-btn" id="ten">10</span></button>
+            </form>
         </div>
         <br>
         <div id="confirm-box"></div>
