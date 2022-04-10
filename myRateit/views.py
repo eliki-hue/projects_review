@@ -123,31 +123,37 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-def project_like(request, id):
-    likes = Likes.objects.filter(id=id).first()
-    # check if the user has already liked the image
-    if Likes.objects.filter(id=id).exists():
-        # unlike the image
-        likes.delete()
-        # reduce the number of likes by 1 for the image
-        project = Project.objects.get(id=id)
-        # check if the image like_count is equal to 0
-        if project.like_count == 0:
-            project.like_count = 0
-            project.save()
-        else:
-            like =project.like_count
-            like= like -1 
-            project.save()
-        return redirect('/')
-    else:
-        likes = Likes(id=id)
-        likes.save()
-        # increase the number of likes by 1 for the image
-        image = Project.objects.get(id=id)
-        likes=image.like_count 
-        likes = likes +1
-        likes.save()
-        image.save()
-        return redirect('/')
-        
+# def project_like(request, id):
+#     likes = Likes.objects.filter(id=id).first()
+#     # check if the user has already liked the image
+#     if Likes.objects.filter(id=id).exists():
+#         # unlike the image
+#         likes.delete()
+#         # reduce the number of likes by 1 for the image
+#         project = Project.objects.get(id=id)
+#         # check if the image like_count is equal to 0
+#         if project.like_count == 0:
+#             project.like_count = 0
+#             project.save()
+#         else:
+#             like =project.like_count
+#             like= like -1 
+#             project.save()
+#         return redirect('/')
+#     else:
+#         likes = Likes(id=id)
+#         likes.save()
+#         # increase the number of likes by 1 for the image
+#         image = Project.objects.get(id=id)
+#         likes=image.like_count 
+#         likes = likes +1
+#         likes.save()
+#         image.save()
+#         return redirect('/')
+
+def project_details(request, pk):
+    project = Project.objects.filter(id=pk)
+    print(project)
+
+    return render(request,'project_details.html', {'projects':project})
+

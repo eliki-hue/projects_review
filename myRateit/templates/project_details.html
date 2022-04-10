@@ -1,44 +1,63 @@
+<!-- Button trigger modal -->
 {%extends 'base.html'%}
-{% load bootstrap3 %}
-{% block content%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>welcome to your profile page</h1>
+{% block content %} 
+{{ block.super}}
 
-<a class="nav-link" href="/update_profile">update profile</a>
-{% for profile in profile %}
-
-<div class="modal-body">
-  <div class="row">
-    <div class="">
-        <img src="{{project.landing_page.url}}" height="auto%" width="100%" alt="mascot"></div>
+{% for project in projects %}
+<img src="{{project.landing_page.url}}" alt="">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pic{{project.id}}">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="pic{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>tittle {{project.title}}</p>
+            <p>description {{project.description}}</p>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
   </div>
- <div >
-    <div class="up" style="align-items: center;text-align: center;justify-items: center;align-content: center;width: 80% vw;margin: 10px;">
-        <!-- <h2>{{ pic.image_name }}</h2> -->
-        
-        <h3><strong>Name: </strong> {{project.tittle}}</h3> 
-    <h3> <strong> caption:</strong> {{project.description}}</h3>
-    <a href="{{project.link}}">link</a>
-     
-    <h3><strong>comment: </strong>{{project.comments.comments}}</h3>
-    <div>
 
-{% empty %}
-  <div class="row">
-    <h2 class="text-center">No profile info set</h2>
-    
-    
-  </div>
-  {% endfor %}
 
+</script>
+    
+<!-- jQuery library -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Initialize Bootstrap functionality -->
+<script>
+// Initialize tooltip component
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+// Initialize popover component
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
+  {%endfor%}
+
+  
   {%endblock%}
-</body>
-</html>
