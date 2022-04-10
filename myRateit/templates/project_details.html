@@ -1,5 +1,6 @@
 <!-- Button trigger modal -->
 {%extends 'base.html'%}
+{% load static %}
 {% block content %} 
 {{ block.super}}
 
@@ -22,11 +23,11 @@
         <div class="modal-body">
             <p>tittle {{project.title}}</p>
             <p>description {{project.description}}</p>
-            <span class="fa fa-star checked" id="first"></span>
-            <span class="fa fa-star checked" id="second"></span>
-            <span class="fa fa-star checked" id="three"></span>
-            <span class="fa fa-star" id="four"></span>
-            <span class="fa fa-star" id="five"></span>
+            <button type="submit"><span class="fa fa-star my-btn checked" id="first"></span></button>
+            <button type="submit"><span class="fa fa-star my-btn checked" id="two"></span></button>
+            <button type="submit"><span class="fa fa-star my-btn checked" id="three"></span></button>
+            <button type="submit"><span class="fa fa-star my-btn"  id="four"></span></button>
+            <button type="submit"><span class="fa fa-star my-btn" id="five"></span></button>
         </div>
         <br>
         <div id="confirm-box"></div>
@@ -39,7 +40,7 @@
   </div>
 
 
-</script>
+<script src="{% static 'main.js' %}" defer></script>
     
 <!-- jQuery library -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -59,7 +60,8 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 })
 </script>
-  {%endfor%}
-
   
-  {%endblock%}
+
+{%endfor%}
+{%endblock%}
+  
