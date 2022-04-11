@@ -7,7 +7,7 @@
 {% for project in projects %}
 <div class="container">
     <div class="row">
-        <div class="col-sm-8">
+        <!-- <div class="col-sm-8">
             <h2>{{project.title}}</h2>
             <div style="width: 100%; height: auto;">
                 <img src="{{project.landing_page.url}}" style="width: 100%; height: auto;" alt="">
@@ -22,12 +22,30 @@
                        <h5><a href="{{project.link}}">visit</a></h5>
                    
                <h4><p>Rating score: {{project.score}}</p></h4> 
+            </div> -->
+            <div class="card mb-3" style="max-width: 100vw;">
+              <div class="row g-0">
+                <div class="col-md-6">
+                  <img src="{{project.landing_page.url}}" style="width:100%;height: auto;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h3 class="card-title"><strong>Title: </strong>{{project.title}}</h3>
+                    <h4><strong>author: </strong>{{project.author}}</h4>
+                    <h4 class="card-text"><strong>Description: </strong> {{project.description}}</h4>
+                    <h4 class="card-text"><strong>Link: </strong><a href="{{project.link}}" target="blank">visit</a></h4>
+                    <h4 class="card-text"><strong>Rating: </strong>{{project.score}} out of 10</h4>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pic{{project.id}}">
+                      Rate
+                    </button>
+                  
+                  </div>
+                </div>
+              </div>
             </div>
             
              
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pic{{project.id}}">
-                Rate
-              </button>
+            
               
               <!-- Modal -->
               <div class="modal fade"  id="pic{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">

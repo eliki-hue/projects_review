@@ -1,0 +1,35 @@
+{%extends 'base.html'%} 
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <!-- {% if search_result%}
+      <h2> {{message}}</h2>
+    {% else %}
+      <h2> {{message}}</h2>
+    {% endif %}
+
+  </div> -->
+
+  
+
+  <!-- {{message}} -->
+
+  {% if search_result %}
+  <div class="row">
+      {{message}}
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <img src="{{search_result.landing_page.url}}" class="img-responsive" alt="Image">
+    </div>
+    <h3><strong>Title: </strong> {{search_result.title}}</h3> 
+    <h3> <strong> Description:</strong> {{search_result.description}}</h3>
+    <h3><strong>Author: </strong>{{search_result.author}}</h3>
+    <h3><strong>Rating: </strong>{{search_result.score}}</h3>
+    {% else %}
+
+    <h2>No project with the searched title</h2>
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

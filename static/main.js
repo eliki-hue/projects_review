@@ -242,7 +242,7 @@ arr.forEach(item=> item.addEventListener('mouseover',(event)=>{
             },
             success:function(response){
                 console.log(response)
-                confirmBox.innerHTML='<h3>Successfuly rated</h3>'
+                confirmBox.innerHTML='<h3>Successfuly rated with {val_num}</h1>'
             },
             error:function(error){
                 consolee.log(error)

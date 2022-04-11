@@ -1,5 +1,6 @@
 from email import message
 from multiprocessing import AuthenticationError
+from urllib import response
 from django.shortcuts import redirect, render
 from .models import Project, Profile,Likes
 from django.contrib.auth import login, authenticate
@@ -167,8 +168,11 @@ def rate_project(request):
         project_id =request.POST.get('project_id')
         val =request.POST.get('val_num')
         obj =Project.objects.get(id= project_id)
-        obj.score =val
+        current_votes=obj.score
+        adding= (current_votes + int(val))/2
+        obj.score =adding
         obj.save()
+        home()
         return JsonResponse({'success':'true', 'score':val}, safe =False)
     return JsonResponse({'success':'false'})
 
@@ -191,3 +195,22 @@ class ProfileDescription(APIView):
         profile = self.get_profile(pk)
         serializers = ProfileSerializer(profile)
         return Response(serializers.data)
+
+
+def search_results(request):
+
+    if 'search_term' in request.GET and request.GET["search_term"]:
+        search_term = request.GET.get("search_term")
+        try:
+            searched_result = Project.search(search_term)
+            message = f"Found searched project by title {search_term}"
+        except Project.DoesNotExist:
+             message="No project with that title please try a different title."
+             return render(request, 'NotFound.html',{'message':message})
+
+
+        return render(request, 'search.html',{'message':message,"search_result": searched_result})
+
+    else:
+        message = "You haven't searched for any category"
+        return render(request, 'search.html',{"message":message})

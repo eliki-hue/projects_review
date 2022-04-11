@@ -36,7 +36,7 @@ class Project(models.Model):
     link= models.CharField(max_length=100, default='/')
     score= models.IntegerField(default=0)
     validators=[
-        MinValueValidator(5),
+        MaxValueValidator(10),
         MinValueValidator(1)
 
         ]
@@ -53,6 +53,11 @@ class Project(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+
+    @classmethod
+    def search(cls,title):
+        items = cls.objects.get(title=title)
+        return items
 
 
 class Likes(models.Model):
