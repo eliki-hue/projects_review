@@ -1,1 +1,1 @@
-web: gunicorn instagramClone.wsgi --log-file -
+web: gunicorn rateit.wsgi --log-file -
