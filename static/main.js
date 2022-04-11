@@ -225,13 +225,60 @@ arr.forEach(item=> item.addEventListener('mouseover',(event)=>{
 
 arr.forEach(item=> item.addEventListener('mouseover',(event)=>{
     const val = (event.target.id)
-    console.log(val)
-
+    
     form.addEventListener('submit', e=>{
         e.preventDefault()
         const id = e.target.id
         const val_num = getNumericvalue(val)
-        alert(val_num)
         
+        $.ajax({
+            type:'POST',
+            url:'/rate/',
+            data:{
+                'csrfmiddlewaretoken':csrf[0].value,
+                'project_id':id,
+                'val_num':val_num,
+
+            },
+            success:function(response){
+                console.log(response)
+                confirmBox.innerHTML='<h3>Successfuly rated with {val_num}</h3>'
+            },
+            error:function(error){
+                consolee.log(error)
+                confirmBox.innerHTML ='<h1>ups... something went wrong</h1>'
+            }
+
+        })
     })
+    
+
+    
 }))
+
+
+    // $(document).ready(function(){
+    //     $('form').submit(function(event){
+    //       event.preventDefault()
+    //       form = $("form")
+      
+    //         $.ajax({
+    //             type:'POST',
+    //             url:'/rate/',
+    //             data:{
+    //                 'csrfmiddlewaretoken':csrf[0].value,
+    //                 'project_id':id,
+    //                 'val_num':val_num,
+
+    //             },
+    //             success:function(response){
+    //                 console.log(response)
+    //                 confirmBox.innerHTML='<h1>Successfuly rated with ${response.score}</h1>'
+    //             },
+    //             error:function(error){
+    //                 consolee.log(error)
+    //                 confirmBox.innerHTML ='<h1>ups... something went wrong</h1>'
+    //             }
+    //         }) // End of document ready function
+    //      })
+    //     })
