@@ -84,7 +84,7 @@
                    
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="refresh" class="btn btn-primary">Save changes</button>
+                      <button type="refresh" onClick="refreshPage()" class="btn btn-primary">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -93,6 +93,13 @@
     </div>
 </div>
 
+
+
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
 
 
 

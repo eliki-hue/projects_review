@@ -172,8 +172,8 @@ def rate_project(request):
         adding= (current_votes + int(val))/2
         obj.score =adding
         obj.save()
-        home()
-        return JsonResponse({'success':'true', 'score':val}, safe =False)
+        
+        return JsonResponse({'success':'true', 'score':adding}, safe =False)
     return JsonResponse({'success':'false'})
 
 

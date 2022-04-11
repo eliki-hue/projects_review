@@ -242,7 +242,7 @@ arr.forEach(item=> item.addEventListener('mouseover',(event)=>{
             },
             success:function(response){
                 console.log(response)
-                confirmBox.innerHTML='<h3>Successfuly rated with {val_num}</h1>'
+                confirmBox.innerHTML='<h3>Successfuly rated</h1>'
             },
             error:function(error){
                 consolee.log(error)
@@ -256,29 +256,3 @@ arr.forEach(item=> item.addEventListener('mouseover',(event)=>{
     
 }))
 
-
-    // $(document).ready(function(){
-    //     $('form').submit(function(event){
-    //       event.preventDefault()
-    //       form = $("form")
-      
-    //         $.ajax({
-    //             type:'POST',
-    //             url:'/rate/',
-    //             data:{
-    //                 'csrfmiddlewaretoken':csrf[0].value,
-    //                 'project_id':id,
-    //                 'val_num':val_num,
-
-    //             },
-    //             success:function(response){
-    //                 console.log(response)
-    //                 confirmBox.innerHTML='<h1>Successfuly rated with ${response.score}</h1>'
-    //             },
-    //             error:function(error){
-    //                 consolee.log(error)
-    //                 confirmBox.innerHTML ='<h1>ups... something went wrong</h1>'
-    //             }
-    //         }) // End of document ready function
-    //      })
-    //     })
