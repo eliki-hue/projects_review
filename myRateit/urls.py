@@ -13,6 +13,6 @@ urlpatterns=[
     # path("like/<int:id>",views.project_like,name='project_like'),
     path("details/<int:pk>",views.project_details,name='project_details'),
     path('rate/', views.rate_project, name='rate_project' ),
-
+    path('api/projects', views.ProjectList.as_view())
     
 ]
