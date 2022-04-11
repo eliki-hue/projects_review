@@ -22,6 +22,8 @@ def home(request):
     
 
     return render(request,'index.html',{'projects':projects, 'message': message})
+
+@login_required(login_url='/accounts/login/')
 def profile_update(request):
     current_user = request.user
     if request.method == 'POST':
@@ -55,7 +57,7 @@ def profile_update(request):
     return render(request, 'profiledisplay.html',{'form':form})
        
        
-
+@login_required(login_url='/accounts/login/')
 def profile_display(request):
 
     current_user = request.user

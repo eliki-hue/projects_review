@@ -1,67 +1,73 @@
 {% extends 'base.html'%}
 {% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  {% load static %}
-  {% block styles %}
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-  {% endblock %}
-  {% block scripts %}
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% endblock %}
+  <title>Document</title>
 </head>
-<body class="container">
-  <div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6" style="align-items: center;text-align: center;justify-items: center;align-content: center;margin: 10px;">
-      {% block content %}
-      {% for project in projects %}
-      <div class="up" style="align-items: center;text-align: center;justify-items: center;align-content: center;width: 80% vw;margin: 10px;">
-        <!-- <h2>{{ pic.image_name }}</h2> -->
-        <form action="{%url 'project_details' project.pk%}">
-          {% csrf_token %}
-          <button value="{{project.id}}" name="project.id" class="btn btn-sm btn-success" > <img src="{{project.landing_page.url}}" height="auto%" width="100%" alt="mascot"></div> <i class="fa fa-thumbs-up" ></i></button> 
-       <div>
-        <h3><strong>Name: </strong> {{project.tittle}}</h3> 
-    <h3> <strong> caption:</strong> {{project.description}}</h3>
-    <a href="{{project.link}}">link</a>
-     
-    <h3><strong>comment: </strong>{{project.comments.comments}}</h3>
-    <div>
-      {% if project.comments.all%}
-      {% for comment in project.comments.all %}
-      <p>{{comment.comments}} <strong>author:</strong> {{ comment.author }}    <strong> Date </strong>{{ comment.date_added }}</p>
-      <p></p> 
-      {% endfor %}
-      {% else %}
-      <p>No comments yet</p>
-      {%endif%}
-      
+<body>
+  <div class="container">
+    <div class="row header" style="height: 40%;;">
+      <img src="{% static 'media/bg.jpg' %}" style="height: 50vh;width: 100%;" alt="">
+    </div><br><br>
+    <div class="row">
+      <div  style="font-family: 'Kavivanar', cursive;">
+        <div class="container">
+            <div class="row">
+                {% for project in projects %}
+                <div class="col-sm-12 col-md-4 col-lg-3"style="font-family: 'Kavivanar', cursive;">
+                    <div class="card">
+                        <div class="card-body">
+                            <div style="text-align:center;"></div>
+                            <a href=""> 
+                              <form action="{%url 'project_details' project.pk%}">
+                                {% csrf_token %}
+                               <button value="{{project.id}}" name="project.id" class="btn btn-sm btn-success" > <img src="{{project.landing_page.url}}" height="auto" width="100%" alt="mascot"></div> <i class="fa fa-thumbs-up" ></i></button> 
+                               </a>
+                        
+                              </form>
+                                
+                        
+                        <div class="overlay">
+                            <p style="font-size:15px;">
+                              <h5>Name: {{project.title}}</h5> 
+                                Posted by:{{project.author}}</p>
+                                
+                            
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+      </div>
     </div>
-    <a href="{% url 'add_comment' %}"><button >add comment</button></a>
-
-    <form action="/like/{{image.id}}">
-      {% csrf_token %}
-      <button value="{{image.id}}" class="btn btn-sm btn-success" >likes {{image.like_count}} <i class="fa fa-thumbs-up" id="like"></i></button> 
-   <div>
-   
-      {%endfor%}
-      {%endblock%}
-
-    </div>
-    <div class="col-sm-3"></div>
-
   </div>
-  <script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpbh-mt'},{'server':'p3plmcpnl487010'},{'id':'8437534'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
-    
+  {% endblock %}
 </body>
 </html>
+    <!-- .button {
+      background-color: black;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      /* border-radius: 16px; */
+    }
+    .button:hover {
+      background-color: #F1F1F1;
+    }
+    </style> -->
+      
+    
 
 
