@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'myRateit',
     'bootstrap3',
     'cloudinary',
+    'rest_framework'
     
 ]
 
