@@ -30,7 +30,7 @@
               </button>
               
               <!-- Modal -->
-              <div class="modal fade" id="pic{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">
+              <div class="modal fade"  id="pic{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -39,10 +39,14 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body">
-                        <p>tittle {{project.title}}</p>
-                        <p>description {{project.description}}</p>
+                    <div class="modal-body" style="font-size: small;">
+                        <p>Give your rating based on:</p>
                         
+                          <h3>Design</h3> 
+                          <h3>Usability</h3>
+                          <h3>Content</h3>
+                        
+
                         <form action="" class="rate-form" method="POST" id="{{project.id}}">
                             {% csrf_token %}
                             <button type="submit"><span class="fa fa-star my-btn" id="first">1</span></button>
@@ -62,7 +66,7 @@
                    
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="refresh" class="btn btn-primary">Save changes</button>
                     </div>
                   </div>
                 </div>

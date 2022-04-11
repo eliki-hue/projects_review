@@ -14,18 +14,18 @@
   background-position: center;
   height: 70vh;
 } */
-.button {
+/* .button {
   background-color: black;
   border: none;
   color: white;
   /* padding: 10px 20px; */
-  text-align: center;
+  /* text-align: center;
   text-decoration: none;
   display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 16px;
-}
+  border-radius: 16px; */
+
 .button:hover {
   background-color: #F1F1F1;
 }
