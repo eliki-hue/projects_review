@@ -3,11 +3,11 @@ from multiprocessing import AuthenticationError
 from django.shortcuts import redirect, render
 from .models import Project, Profile,Likes
 from django.contrib.auth import login, authenticate
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, ProjectForm, CommentForm, SignUpForm
-from .serializer import ProjectSerializer
+from .serializer import ProjectSerializer, ProfileSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 # Create your views here.
@@ -177,4 +177,17 @@ class ProjectList(APIView):
     def get(self, request, format=None):
         all_projects = Project.objects.all()
         serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
+
+class ProfileDescription(APIView):
+    
+    def get_profile(self, pk):
+        try:
+            return ProfileSerializer.objects.get(pk=pk)
+        except Profile.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        profile = self.get_profile(pk)
+        serializers = ProfileSerializer(profile)
         return Response(serializers.data)
