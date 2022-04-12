@@ -67,10 +67,19 @@ class Likes(models.Model):
 
     
 class Comment(models.Model):
-    image= models.ForeignKey(Project, related_name='comments', on_delete=models.CASCADE)
+    project= models.ForeignKey(Project, related_name='comments', on_delete=models.CASCADE)
     comments =models.CharField(max_length=100, blank=True, default='great')
     author = models.CharField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return '%s - %s' % (self.image.image_name, self.author)
+
+class Rate(models.Model):
+    project= models.ForeignKey(Project, related_name='rating', on_delete=models.CASCADE)
+    design = models.IntegerField(default=0)
+    usability = models.IntegerField(default=0)
+    content = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.project

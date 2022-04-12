@@ -78,6 +78,49 @@
                             <button type="submit"><span class="fa fa-star my-btn"  id="nine">9</span></button>
                             <button type="submit"><span class="fa fa-star my-btn" id="ten">10</span></button>
                         </form>
+
+                        <form action="{%url 'rate'%}" method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <select name="design" id="design">
+                            <option ><span class="fa fa-star my-btn" id="first">1</span></option>
+                            <option><span class="fa fa-star my-btn" id="two">2</span></option>
+                            <option ><span class="fa fa-star my-btn" id="three">3</span></option>
+                            <option ><span class="fa fa-star my-btn"  id="four">4</span></option>
+                            <option ><span class="fa fa-star my-btn" id="five">5</span></option>
+                            <option><span class="fa fa-star my-btn" id="six">6</span></option>
+                            <option ><span class="fa fa-star my-btn" id="seven">7</span></option>
+                            <option ><span class="fa fa-star my-btn" id="eight">8</span></option>
+                            <option ><span class="fa fa-star my-btn"  id="nine">9</span></option>
+                            <option ><span class="fa fa-star my-btn" id="ten">10</span></option>
+                          </select>
+                          <select name="usability" id="usability">
+                            <option ><span class="fa fa-star my-btn" id="first">1</span></option>
+                            <option><span class="fa fa-star my-btn" id="two">2</span></option>
+                            <option ><span class="fa fa-star my-btn" id="three">3</span></option>
+                            <option ><span class="fa fa-star my-btn"  id="four">4</span></option>
+                            <option ><span class="fa fa-star my-btn" id="five">5</span></option>
+                            <option><span class="fa fa-star my-btn" id="six">6</span></option>
+                            <option ><span class="fa fa-star my-btn" id="seven">7</span></option>
+                            <option ><span class="fa fa-star my-btn" id="eight">8</span></option>
+                            <option ><span class="fa fa-star my-btn"  id="nine">9</span></option>
+                            <option ><span class="fa fa-star my-btn" id="ten">10</span></option>
+                          </select>
+                          <select name="content" id="content">
+                            <option ><span class="fa fa-star my-btn" id="first">1</span></option>
+                            <option><span class="fa fa-star my-btn" id="two">2</span></option>
+                            <option ><span class="fa fa-star my-btn" id="three">3</span></option>
+                            <option ><span class="fa fa-star my-btn"  id="four">4</span></option>
+                            <option ><span class="fa fa-star my-btn" id="five">5</span></option>
+                            <option><span class="fa fa-star my-btn" id="six">6</span></option>
+                            <option ><span class="fa fa-star my-btn" id="seven">7</span></option>
+                            <option ><span class="fa fa-star my-btn" id="eight">8</span></option>
+                            <option ><span class="fa fa-star my-btn"  id="nine">9</span></option>
+                            <option ><span class="fa fa-star my-btn" id="ten">10</span></option>
+                          </select>
+
+
+
+                        </form>
                         <br>
                         <div id="confirm-box"></div>
                     </div>
