@@ -56,6 +56,7 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
+                      <button action="{%url 'rate' project.id%}" type="submit">ratting</button>
                     </div>
                     <div class="modal-body" style="font-size: small;">
                         <p>Give your rating based on:</p>
@@ -63,9 +64,9 @@
                           <h3>Design</h3> 
                           <h3>Usability</h3>
                           <h3>Content</h3>
-                        
+                        {{form}}
 
-                        <form action="" class="rate-form" method="POST" id="{{project.id}}">
+                        <!-- <form action="" class="rate-form" method="POST" id="{{project.id}}">
                             {% csrf_token %}
                             <button type="submit"><span class="fa fa-star my-btn" id="first">1</span></button>
                             <button type="submit"><span class="fa fa-star my-btn" id="two">2</span></button>
@@ -79,7 +80,7 @@
                             <button type="submit"><span class="fa fa-star my-btn" id="ten">10</span></button>
                         </form>
 
-                        <form action="{%url 'rate'%}" method="post" enctype="multipart/form-data">
+                        <form action="{%url 'rate' project.id%}" name="RateForm" method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                           <select name="design" id="design">
                             <option ><span class="fa fa-star my-btn" id="first">1</span></option>
@@ -120,7 +121,7 @@
 
 
 
-                        </form>
+                        </form> -->
                         <br>
                         <div id="confirm-box"></div>
                     </div>

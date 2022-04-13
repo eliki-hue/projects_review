@@ -45,11 +45,11 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
-    def save_image(self):
+    def save_project(self):
         self.save()
 
-    def delete_image(self,image_reff):
-        to_delete= Project.objects.filter(name=image_reff).delete()
+    def delete_project(self,project_reff):
+        to_delete= Project.objects.filter(name=project_reff).delete()
 
     def total_likes(self):
         return self.likes.count()
@@ -73,13 +73,15 @@ class Comment(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '%s - %s' % (self.image.image_name, self.author)
+        return '%s - %s' % (self.project.title, self.author)
 
 class Rate(models.Model):
+    RATE_CHOICES =[[1,'1'],[2,'2'],[3,'3'],[4,'4'],[5,'5'],[6,'6'],[6,'6'],[7,'7'],[8,'8'],[9,'9'],[10,'10']]
+
     project= models.ForeignKey(Project, related_name='rating', on_delete=models.CASCADE)
-    design = models.IntegerField(default=0)
-    usability = models.IntegerField(default=0)
-    content = models.IntegerField(default=0)
+    design = models.IntegerField(choices=RATE_CHOICES,default=0)
+    usability = models.IntegerField(choices=RATE_CHOICES,default=0)
+    content = models.IntegerField(choices=RATE_CHOICES,default=0)
 
     def __str__(self):
         return self.project

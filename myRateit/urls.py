@@ -16,4 +16,5 @@ urlpatterns=[
     path('api/projects', views.ProjectList.as_view()),
     path('api/project/project-id/<int:pk>[0-9]+)', views.ProfileDescription.as_view()),
     path('search/', views.search_results, name='search_results'),
+    path('rate/<int:pk>', views.rate, name='rate')
 ]

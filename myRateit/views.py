@@ -1,13 +1,12 @@
-from email import message
-from multiprocessing import AuthenticationError
+from django.urls import reverse
 from urllib import response
-from django.shortcuts import redirect, render
-from .models import Project, Profile,Likes
+from django.shortcuts import redirect, render,HttpResponseRedirect
+from .models import Project, Profile,Likes, Rate
 from django.contrib.auth import login, authenticate
 from django.http import JsonResponse, Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, ProjectForm, CommentForm, SignUpForm
+from .forms import ProfileForm, ProjectForm, CommentForm, SignUpForm,RateForm
 from .serializer import ProjectSerializer, ProfileSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -129,39 +128,14 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-# def project_like(request, id):
-#     likes = Likes.objects.filter(id=id).first()
-#     # check if the user has already liked the image
-#     if Likes.objects.filter(id=id).exists():
-#         # unlike the image
-#         likes.delete()
-#         # reduce the number of likes by 1 for the image
-#         project = Project.objects.get(id=id)
-#         # check if the image like_count is equal to 0
-#         if project.like_count == 0:
-#             project.like_count = 0
-#             project.save()
-#         else:
-#             like =project.like_count
-#             like= like -1 
-#             project.save()
-#         return redirect('/')
-#     else:
-#         likes = Likes(id=id)
-#         likes.save()
-#         # increase the number of likes by 1 for the image
-#         image = Project.objects.get(id=id)
-#         likes=image.like_count 
-#         likes = likes +1
-#         likes.save()
-#         image.save()
-#         return redirect('/')
+
 
 def project_details(request, pk):
     project = Project.objects.filter(id=pk)
     print(project)
+    form =RateForm()
 
-    return render(request,'project_details.html', {'projects':project})
+    return render(request,'project_details.html', {'projects':project, 'form':form})
 
 def rate_project(request):
     if request.method =='POST':
@@ -215,4 +189,17 @@ def search_results(request):
         message = "You haven't searched for any category"
         return render(request, 'search.html',{"message":message})
 
-
+def rate(request,pk):
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        obj =Rate.objects.get(project_id=pk)
+        obj.design = form.cleaned_data['design']
+        obj.usability = form.cleaned_data['usability']
+        obj.content = form.cleaned_data['content']
+        # current_votes=obj.score
+        # adding= (current_votes + int(val))/2
+        # obj.score =adding
+        obj.save()
+        
+    return render (request, 'rate.html',{'form':form})
+    
